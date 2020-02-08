@@ -1,0 +1,13 @@
+{
+    "game_type": "standard",
+    "players": [
+        {
+            "name": "p1",
+            "type": "standard"
+        },
+        {
+            "name": "p2",
+            "type": "standard"
+        }
+    ]
+}

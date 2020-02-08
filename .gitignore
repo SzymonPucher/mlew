@@ -1,0 +1,11 @@
+.vscode/
+python3/__pycache__/__init__.cpython-36.pyc
+python3/players/__pycache__/player.cpython-36.pyc
+python3/players/__pycache__/player_standard.cpython-36.pyc
+python3/players/__pycache__/__init__.cpython-36.pyc
+python3/game_types/__pycache__/game.cpython-36.pyc
+python3/game_types/__pycache__/game_standard.cpython-36.pyc
+python3/game_types/__pycache__/__init__.cpython-36.pyc
+python3/cards/__pycache__/card.cpython-36.pyc
+python3/cards/__pycache__/card_standard.cpython-36.pyc
+python3/cards/__pycache__/__init__.cpython-36.pyc
