@@ -8,6 +8,18 @@
         {
             "name": "p2",
             "type": "standard"
+        },
+        {
+            "name": "p3",
+            "type": "standard"
+        },
+        {
+            "name": "p4",
+            "type": "standard"
+        },
+        {
+            "name": "p5",
+            "type": "standard"
         }
     ]
 }

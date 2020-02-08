@@ -1,13 +1,14 @@
 import random
 from collections import Counter
+from copy import copy
 
 from cards.card_standard import Card
 from players.player_standard import Player
 
 class Game:
     def __init__(self, config):
-        cards = Game.get_deck(len(config['players']))
-        self.players = [Player(player['name'], player['type'], next(cards)) 
+        new_deck_generator = Game.get_deck(len(config['players']))
+        self.players = [Player(player['name'], player['type'], next(new_deck_generator)) 
                         for player in config['players']]
         self.stats = Counter()
 
@@ -26,47 +27,64 @@ class Game:
         for _ in range(portions):
             yield deck[dividor * offset:dividor * (offset + 1)]
             offset += 1
+    
+    def get_cards_from_players(self, num, cards, players):
+        active_cards = {}
+        for player in players:
+                try:    
+                    # extracts 2 cards in case of war, 1 during normal battle
+                    for _ in range(1 if num == 1 else 2):
+                        cards += player.remove_cards(1)
+                    active_cards[player] = cards[-1]
+                except IndexError:
+                    if player in self.players:
+                        self.players.remove(player)
+        return active_cards
 
-
-    def all_players_have_cards(self):
-        for p in self.players:
-            if not p.has_cards():
-                return False
-        return True
-
+    def get_players_of_max_active_cards(self, active_cards):
+        max_players = list()
+        max_val = 0
+        for key, val in active_cards.items():
+            if val > max_val:
+                max_val = val
+                max_players = [key]
+            elif val == max_val:
+                max_players.append(key)
+        return max_players
 
     def battle(self):
+        active_players = copy(self.players)
+        cards_in_battle = []
         num = 1
         while(True):
             self.stats['battle_count'] += 1
             # get cards
-            try:
-                p1_card = self.players[0].cards[num * -1]
-            except IndexError:
-                self.players[0].empty_deck()
-                return
+            active_cards = self.get_cards_from_players(num, cards_in_battle, active_players)
             
-            try:
-                p2_card = self.players[1].cards[num * -1]
-            except IndexError:
-                self.players[1].empty_deck()
-                return
+            # covers edge case when all active players run out of cards
+            if len(active_cards) == 0:
+                active_players = list(filter(lambda x: x.has_cards(), copy(self.players)))
+                continue
             
-            # compare
-            if p1_card > p2_card:
-                self.players[0].insert_cards(self.players[1].remove_cards(num) + self.players[0].remove_cards(num))
+            # get players with highest active card on the table
+            active_players = self.get_players_of_max_active_cards(active_cards)
+            
+            # termination condition
+            if len(active_players) == 1:
+                active_players[0].insert_cards(cards_in_battle)
                 break
-            if p1_card < p2_card:
-                self.players[1].insert_cards(self.players[0].remove_cards(num) + self.players[1].remove_cards(num))
-                break
-            num += 2
+
+            # next war
+            num += 1
             self.stats['war_count'] += 1
         if num > 1:
-            self.stats['war_length_{}'.format(num//2)] += 1
+            self.stats['war_length_{}'.format(num-1)] += 1
 
     def play(self):
-        while(self.all_players_have_cards()):
+        # play a game of War
+        while(len(self.players) > 1):
             self.battle()
-        winner = list(filter(lambda x: x.has_cards(), self.players))[0].name
-        self.stats['{} won'.format(winner)] = 1
+        
+        # stats
+        self.stats['{} won'.format(self.players[0].name)] = 1
         return self.stats
