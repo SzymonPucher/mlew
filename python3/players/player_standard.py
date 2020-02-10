@@ -19,8 +19,3 @@ class Player:
     
     def remove_cards(self, number):
         return [self.cards.pop() for i in range(number)]
-
-    
-    
-    
-    
