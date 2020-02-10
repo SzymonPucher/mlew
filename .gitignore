@@ -9,3 +9,5 @@ python3/game_types/__pycache__/__init__.cpython-36.pyc
 python3/cards/__pycache__/card.cpython-36.pyc
 python3/cards/__pycache__/card_standard.cpython-36.pyc
 python3/cards/__pycache__/__init__.cpython-36.pyc
+python3/__pycache__/config.cpython-36.pyc
+python3/__pycache__/run.cpython-36.pyc

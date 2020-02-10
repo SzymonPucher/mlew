@@ -1,5 +1,8 @@
 {
-    "game_type": "standard",
+    "games": {
+        "game_type": "standard",
+        "number_of_games": 1000
+    },
     "players": [
         {
             "name": "p1",
@@ -11,14 +14,6 @@
         },
         {
             "name": "p3",
-            "type": "standard"
-        },
-        {
-            "name": "p4",
-            "type": "standard"
-        },
-        {
-            "name": "p5",
             "type": "standard"
         }
     ]

@@ -4,17 +4,14 @@ from collections import Counter
 import json
 import pandas
 from tqdm import tqdm
-
-
-def load_config():
-    return json.load(open('python3/config.json', 'r'))
+from config import Config
 
 
 def main():
     stats = []
-    config = load_config()
+    config = Config().get_config()
     
-    for _ in tqdm(range(int(10000)), ascii=True, desc='Playing war games'):
+    for _ in tqdm(range(int(config.games.number_of_games)), ascii=True, desc='Playing war games'):
         g = Game(config)
         stats.append(g.play())
     

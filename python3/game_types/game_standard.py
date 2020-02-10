@@ -7,9 +7,9 @@ from players.player_standard import Player
 
 class Game:
     def __init__(self, config):
-        new_deck_generator = Game.get_deck(len(config['players']))
-        self.players = [Player(player['name'], player['type'], next(new_deck_generator)) 
-                        for player in config['players']]
+        new_deck_generator = Game.get_deck(len(config.players))
+        self.players = [Player(player.name, player.type, next(new_deck_generator)) 
+                        for player in config.players]
         self.stats = Counter()
 
     @staticmethod
