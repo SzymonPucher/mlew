@@ -1,6 +1,6 @@
 import math    
             
-class Card:
+class CardBase:
     def __init__(self, val):
         self.num = math.ceil(val/4)
         self.sig = val % 4 # 0=pik, 1=trefl, 2=karo, 3=kier

@@ -1,10 +1,9 @@
 from functools import reduce
 import random
 
-class Player:
-    def __init__(self, name, _type, cards):
+class PlayerBase:
+    def __init__(self, name, cards):
         self.name = name
-        self.type = _type
         self.cards = cards
     
     def has_cards(self):

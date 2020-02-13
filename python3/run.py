@@ -1,5 +1,3 @@
-from game_types.game_standard import Game
-
 from collections import Counter
 import json
 import pandas
@@ -12,7 +10,7 @@ def main():
     config = Config().get_config()
     
     for _ in tqdm(range(int(config.games.number_of_games)), ascii=True, desc='Playing war games'):
-        g = Game(config)
+        g = config.games.game_type(config)
         stats.append(g.play())
     
     df = pandas.DataFrame(list(map(lambda x: dict(x), stats))).fillna(0)

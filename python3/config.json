@@ -1,20 +1,21 @@
 {
     "games": {
-        "game_type": "standard",
+        "game_type": "base",
+        "card_type": "base",
         "number_of_games": 1000
     },
     "players": [
         {
             "name": "p1",
-            "type": "standard"
+            "type": "base"
         },
         {
             "name": "p2",
-            "type": "standard"
+            "type": "base"
         },
         {
             "name": "p3",
-            "type": "standard"
+            "type": "base"
         }
     ]
 }

@@ -29,5 +29,36 @@ class Config:
                 d[i] = type('Expando', (object,), d[i])
         return d
 
+    @staticmethod
+    def convert_card_type(type_str):
+        if type_str == 'base':
+            from card_types.card_base import CardBase
+            return CardBase
+        else:
+            raise NameError('Incorrect type of the card: {}'.format(type_str))
+
+    @staticmethod
+    def convert_player_type(type_str):
+        if type_str == 'base':
+            from player_types.player_base import PlayerBase
+            return PlayerBase
+        else:
+            raise NameError('Incorrect type of the player: {}'.format(type_str))
+    
+    @staticmethod
+    def convert_game_type(type_str):
+        if type_str == 'base':
+            from game_types.game_base import GameBase
+            return GameBase
+        else:
+            raise NameError('Incorrect type of the game: {}'.format(type_str))
+
     def get_config(self):
-        return type('Expando', (object,), Config.dfs(self.config_json))
+        obj = type('Expando', (object,), Config.dfs(self.config_json))
+        obj.games.game_type = Config.convert_game_type(obj.games.game_type)
+        obj.games.card_type = Config.convert_card_type(obj.games.card_type)
+        
+        for i in range(len(obj.players)):
+            obj.players[i].type = Config.convert_player_type(obj.players[i].type)
+
+        return obj

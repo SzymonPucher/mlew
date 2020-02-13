@@ -2,18 +2,15 @@ import random
 from collections import Counter
 from copy import copy
 
-from cards.card_standard import Card
-from players.player_standard import Player
-
-class Game:
+class GameBase:
     def __init__(self, config):
-        new_deck_generator = Game.get_deck(len(config.players))
-        self.players = [Player(player.name, player.type, next(new_deck_generator)) 
+        new_deck_generator = GameBase.get_deck(config.games.card_type, len(config.players))
+        self.players = [player.type(player.name, next(new_deck_generator)) 
                         for player in config.players]
         self.stats = Counter()
 
     @staticmethod
-    def get_deck(portions=2, shuffled=True):
+    def get_deck(Card, portions=2, shuffled=True):
         # create
         deck = [Card(i) for i in range(5, 57)]
         
