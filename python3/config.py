@@ -34,6 +34,9 @@ class Config:
         if type_str == 'base':
             from card_types.card_base import CardBase
             return CardBase
+        elif type_str == 'unique':
+            from card_types.card_unique import CardUnique
+            return CardUnique
         else:
             raise NameError('Incorrect type of the card: {}'.format(type_str))
 

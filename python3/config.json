@@ -1,7 +1,7 @@
 {
     "games": {
         "game_type": "base",
-        "card_type": "base",
+        "card_type": "unique",
         "number_of_games": 1000
     },
     "players": [
