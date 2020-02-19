@@ -1,7 +1,7 @@
 {
     "games": {
         "game_type": "base",
-        "card_type": "unique",
+        "card_type": "base",
         "number_of_games": 1000
     },
     "players": [
@@ -11,11 +11,7 @@
         },
         {
             "name": "p2",
-            "type": "base"
-        },
-        {
-            "name": "p3",
-            "type": "base"
+            "type": "inreverse"
         }
     ]
 }

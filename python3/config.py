@@ -45,6 +45,12 @@ class Config:
         if type_str == 'base':
             from player_types.player_base import PlayerBase
             return PlayerBase
+        elif type_str == 'shuffleless':
+            from player_types.player_shuffleless import PlayerShuffleless
+            return PlayerShuffleless
+        elif type_str == 'inreverse':
+            from player_types.player_inreverse import PlayerInreverse
+            return PlayerInreverse
         else:
             raise NameError('Incorrect type of the player: {}'.format(type_str))
     
