@@ -4,14 +4,13 @@
         "card_type": "base",
         "number_of_games": 1000
     },
-    "players": [
-        {
+    "players": [{
             "name": "p1",
             "type": "base"
         },
         {
             "name": "p2",
-            "type": "inreverse"
+            "type": "base"
         }
     ]
 }

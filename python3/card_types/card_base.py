@@ -2,7 +2,7 @@ import math
             
 class CardBase:
     def __init__(self, val):
-        self.val = math.ceil(val/4)
+        self.val = val // 4
         self.sig = val % 4 # 0=pik, 1=trefl, 2=karo, 3=kier
 
     def __repr__(self):

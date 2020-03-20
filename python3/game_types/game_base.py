@@ -12,7 +12,7 @@ class GameBase:
     @staticmethod
     def get_deck(Card, portions=2, shuffled=True):
         # create
-        deck = [Card(i) for i in range(5, 57)]
+        deck = [Card(i) for i in range(8, 60)]
         
         #shuffle
         if shuffled:
@@ -30,8 +30,7 @@ class GameBase:
         for player in players:
                 try:    
                     # extracts 2 cards in case of war, 1 during normal battle
-                    for _ in range(1 if num == 1 else 2):
-                        cards += player.remove_cards(1)
+                    cards += player.remove_cards(1 if num == 1 else 2)
                     active_cards[player] = cards[-1]
                 except IndexError:
                     if player in self.players:
