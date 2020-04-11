@@ -1,2 +1,6 @@
 .vscode/
 *.cpython-36.pyc
+python3/__pycache__/*
+python3/card_types/__pycache__/*
+python3/game_types/__pycache__/*
+python3/player_types/__pycache__/*
