@@ -61,7 +61,16 @@ class Config:
             return GameBase
         else:
             raise NameError('Incorrect type of the game: {}'.format(type_str))
+    
+    @staticmethod
+    def convert_operation(operation_str):
+        if operation_str == 'sum':
+            return lambda df: df.sum()
+        if operation_str == 'avg':
+            return lambda df: df.mean()
+        raise NameError('Incorrect type of the operation: {}'.format(operation_str))
 
+    
     def get_config(self):
         obj = type('Expando', (object,), Config.dfs(self.config_json))
         obj.games.game_type = Config.convert_game_type(obj.games.game_type)
@@ -69,5 +78,8 @@ class Config:
         
         for i in range(len(obj.players)):
             obj.players[i].type = Config.convert_player_type(obj.players[i].type)
+
+        for i in range(len(obj.analysis.columns)):
+            obj.analysis.columns[i].operation = Config.convert_operation(obj.analysis.columns[i].operation)
 
         return obj

@@ -1,16 +1,37 @@
 {
-    "games": {
-        "game_type": "base",
-        "card_type": "base",
-        "number_of_games": 1000
+  "games": {
+    "game_type": "base",
+    "card_type": "base",
+    "number_of_games": 1000
+  },
+  "players": [
+    {
+      "name": "p1",
+      "type": "base"
     },
-    "players": [{
-            "name": "p1",
-            "type": "base"
-        },
-        {
-            "name": "p2",
-            "type": "base"
-        }
+    {
+      "name": "p2",
+      "type": "base"
+    }
+  ],
+  "analysis": {
+    "columns": [
+      {
+        "name": "battle_count",
+        "operation": "avg"
+      },
+      {
+        "name": "war_count",
+        "operation": "avg"
+      },
+      {
+        "name": "player_win",
+        "operation": "sum"
+      },
+      {
+        "name": "war_length",
+        "operation": "avg"
+      }
     ]
+  }
 }

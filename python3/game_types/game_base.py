@@ -82,5 +82,5 @@ class GameBase:
             self.battle()
         
         # stats
-        self.stats['{} won'.format(self.players[0].name)] = 1
+        self.stats['player_win_{}'.format(self.players[0].name)] = 1
         return self.stats
